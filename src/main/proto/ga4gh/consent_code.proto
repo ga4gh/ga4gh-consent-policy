@@ -2,6 +2,9 @@ syntax = "proto3";
 
 package ga4gh;
 
+option java_package = "org.ga4gh.cosent_code";
+option java_multiple_files = true;
+
 // Data use conditions based on consent codes as introduced in
 // http://journals.plos.org/plosgenetics/article?id=10.1371/journal.pgen.1005772.
 message ConsentCodeDataUseCondition {

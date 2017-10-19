@@ -72,9 +72,9 @@ message ConsentCodeDataUseCondition {
 /** Data use of a resource based on consent codes. */
 message ConsentCodeDataUse {
 
-  ConsentCodeDataUseCondition primaryCategory = 1;
+  ConsentCodeDataUseCondition primary_category = 1;
 
-  repeated ConsentCodeDataUseCondition secondaryCategories = 2;
+  repeated ConsentCodeDataUseCondition secondary_categories = 2;
 
   repeated ConsentCodeDataUseCondition requirements = 3;
 

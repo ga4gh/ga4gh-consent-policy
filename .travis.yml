@@ -1,9 +1,14 @@
-language: python
-python:
-  - 2.7
+language: java
+sudo: false
+jdk:
+- oraclejdk8
 branches:
   only:
-    - master
-    - develop
+  - master
+  - develop
+  - develop-proto
 script:
-  - nosetests -v $VIRTUAL_ENV/src/avro-schema-test-base
+- mvn package
+notifications:
+  slack:
+    secure: gpcNkaRYF9klZCIBZPEw/1yLtbSMqeBq1NIwcIR/627VspEKgAelDG8IYKRHyo3YQy8cGnWPNap1w7kRKqa6DytXwiN3Za6bCjgW2Bx0bJ6gv8CBKnMUNcfWlVGYe9dU6ANVRk3EyKwpWlTPRtb2IQvCNhxxxS0N6YP3LaJIdgAGRfTYI4VVqPxrJvUbVO9V/JsBTlBJhI5FQplZCtOucXsndNIbviZjkDAV23dlvGseM+1Kt1ESYwyT1/OhMdY68utSly/eLqzoer8ZRms6H5Rw5KIHDN75Q6X94aXWTdZpxeQeFiYxKckFTvx/Z8RQlJUImZhMaVi+75WmM6tZk991z5KBEQjYoVQ93tfy3AQNgN2JbL6cJ1KSplBbj/9m55PQl5uQF/Q1DDgRSOUFJzXzGefCxxnm/F54hTlwAMKrLip5gR8X9RBaB0+KAo4QnFiDbDu4j5f5a2GdyDuMQxYUD1Blybr8/CWlE/ed2+oiTg4ryCY2F80iJ2v4CAiNIMFUDRZ0TzhXOigdVNQH118sffPiBsHbSjcnwNT7/vT5guoiSSz92RST83pShCndqFIAMsQRN7yxk1hNcP3zL/Pl7m4r5sHeWkYTRoY3Hme92mesYP2j7g+AQjlFlNZ/TKAiZketNsPAmclVRYmywkAx/skj5cjPIcpmXwpBO7Q=

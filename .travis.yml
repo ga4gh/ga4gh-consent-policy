@@ -6,7 +6,6 @@ branches:
   only:
   - master
   - develop
-  - develop-proto
 script:
 - mvn package
 notifications:

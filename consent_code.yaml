@@ -1,0 +1,114 @@
+swagger: "2.0"
+
+info:
+  version: 1.0.0
+  title: Consent Codes specification
+  description: Data model for the data use conditions based on consent codes. 
+
+paths: {}
+
+definitions:
+  ConsentCodeDataUse:
+    type: object
+    required:
+      - primaryCategory
+      - secondaryCategories
+      - requirements
+      - version
+    properties:
+      primaryCategory:
+        $ref: "#/definitions/ConsentCodeDataUseConditionPrimary"
+      secondaryCategories:
+        type: array
+        items:
+          $ref: "#/definitions/ConsentCodeDataUseConditionSecondary"
+      requirements:
+        type: array
+        items:
+          $ref: "#/definitions/ConsentCodeDataUseConditionRequirement"
+      version:
+        type: string
+        description: Version of the data use specification.
+        example: v0.1
+  ConsentCodeDataUseConditionPrimary:
+    type: object
+    required:
+      - code
+      - description
+    properties:
+      code:
+        type: string
+        description: |
+          Primary data use categories:
+          * NRES: no restrictions - No restrictions on data use.
+          * GRU(CC): general research use and clinical care - For health/medical/biomedical purposes and other biological research, including the study of population origins or ancestry.
+          * HMB(CC): health/medical/biomedical research and clinical care - Use of the data is limited to health/medical/biomedical purposes, does not include the study of population origins or ancestry.
+          * DS-[XX](CC): disease-specific research and clinical care - Use of the data must be related to [disease].
+          * POA: population origins/ancestry research - Use of the data is limited to the study of population origins or ancestry.
+        enum: 
+          - NRES
+          - GRU
+          - HMB
+          - DS
+          - POA
+      description:
+        type: string
+        description: Description of the condition.
+  ConsentCodeDataUseConditionSecondary:
+    type: object
+    required:
+      - code
+      - description
+    properties:
+      code:
+        type: string
+        description: |
+          Secondary data use categories:
+          * RS-[XX]: other research-specific restrictions - Use of the data is limited to studies of [research type] (e.g., pediatric research).
+          * RUO: research use only - Use of data is limited to research purposes (e.g., does not include its use in clinical care).
+          * NMDS: no “general methods” research - Use of the data includes methods development research (e.g., development of software or algorithms) ONLY within the bounds of other data use limitations.
+          * GSO: genetic studies only - Use of the data is limited to genetic studies only (i.e., no research using only the phenotype data).
+        enum:
+          - RS
+          - RUO
+          - NMDS
+          - GSO
+      description:
+        type: string
+        description: Description of the condition.
+  ConsentCodeDataUseConditionRequirement:
+    type: object
+    required:
+      - code
+      - description
+    properties:
+      code:
+        type: string
+        description: |
+          Data use requirements:
+          * NPU: not-for-profit use only - Use of the data is limited to not-for-profit organizations.
+          * PUB: publication required - Requestor agrees to make results of studies using the data available to the larger scientific community.
+          * COL-[XX]: collaboration required - Requestor must agree to collaboration with the primary study investigator(s).
+          * RTN: return data to database/resource - Requestor must return derived/enriched data to the database/resource.
+          * IRB: ethics approval required - Requestor must provide documentation of local IRB/REC approval.
+          * GS-[XX]: geographical restrictions - Use of the data is limited to within [geographic region].
+          * MOR-[XX]: publication moratorium/embargo - Requestor agrees not to publish results of studies until [date].
+          * TS-[XX]: time limits on use - Use of data is approved for [x months].
+          * US: user-specific restrictions - Use of data is limited to use by approved users.
+          * PS: project-specific restrictions - Use of data is limited to use within an approved project.
+          * IS: institution-specific restrictions - Use of data is limited to use within an approved institution.
+        enum:
+          - NPU
+          - PUB
+          - COL
+          - RTN
+          - IRB
+          - GS
+          - MOR
+          - TS
+          - US
+          - PS
+          - IS
+      description:
+        type: string
+        description: Description of the condition.

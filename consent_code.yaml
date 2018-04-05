@@ -157,12 +157,10 @@ components:
           $ref: '#/components/schemas/ConsentCodeDataUseCondition'
         secondaryCategories:
           type: array
-          default: []
           items:
             $ref: '#/components/schemas/ConsentCodeDataUseCondition'
         requirements:
           type: array
-          default: []
           items:
             $ref: '#/components/schemas/ConsentCodeDataUseCondition'
         version:

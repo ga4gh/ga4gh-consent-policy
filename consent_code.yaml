@@ -1,114 +1,185 @@
-swagger: "2.0"
-
+openapi: 3.0.0
+servers: []
 info:
-  version: 1.0.0
-  title: Consent Codes specification
-  description: Data model for the data use conditions based on consent codes. 
-
+  version: "1.1.0"
+  title: Consent Codes
+  description: |
+    Data use conditions based on consent codes have been divided into data use categories and requirements. Requirements are conditions that would require some form of additional agreement on the part of the data provider or data user or additional criteria in order for the data to be reused. Data use categories were further divided into primary and secondary categories. Each resource should fall into only one primary category, whereas a number of secondary categories and requirements may also be applied.
+    
+    Primary data use categories:
+    <table>
+      <tr>
+        <th>Abbreviation</th>
+        <th>Name</th> 
+        <th>Description</th>
+      </tr>
+      <tr>
+        <td>NRES</td>
+        <td>no restrictions</td> 
+        <td>No restrictions on data use.</td>
+      </tr>
+      <tr>
+        <td>GRU(CC)</td>
+        <td>general research use and clinical care</td> 
+        <td>For health/medical/biomedical purposes and other biological research, including the study of population origins or ancestry.</td>
+      </tr>
+      <tr>
+        <td>HMB(CC)</td>
+        <td>health/medical/biomedical research and clinical care</td> 
+        <td>Use of the data is limited to health/medical/biomedical purposes, does not include the study of population origins or ancestry.</td>
+      </tr>
+      <tr>
+        <td>DS-[XX](CC)</td>
+        <td>disease-specific research and clinical care</td> 
+        <td>Use of the data
+    must be related to [disease].</td>
+      </tr>
+      <tr>
+        <td>POA</td>
+        <td>population origins/ancestry research</td> 
+        <td>Use of the data is limited to
+    the study of population origins or ancestry.</td>
+      </tr>
+    </table>
+    <br/>
+    
+    Secondary data use categories:
+    <table>
+      <tr>
+        <th>Abbreviation</th>
+        <th>Name</th> 
+        <th>Description</th>
+      </tr>
+      <tr>
+        <td>RS-[XX]</td>
+        <td>other research-specific restrictions</td> 
+        <td>Use of the data is limited to studies of [research type] (e.g., pediatric research).</td>
+      </tr>
+      <tr>
+        <td>RUO</td>
+        <td>research use only</td> 
+        <td>Use of data is limited to research purposes (e.g., does not include its use in clinical care).</td>
+      </tr>
+      <tr>
+        <td>NMDS</td>
+        <td>no “general methods” research</td> 
+        <td>Use of the data includes methods development research (e.g., development of software or algorithms) ONLY within the bounds of other data use limitations.</td>
+      </tr>
+      <tr>
+        <td>GSO</td>
+        <td>genetic studies only</td> 
+        <td>Use of the data is limited to genetic studies only (i.e., no research using only the phenotype data).</td>
+      </tr>
+    </table>
+    <br/>
+    
+    Data use requirements:
+    <table>
+      <tr>
+        <th>Abbreviation</th>
+        <th>Name</th> 
+        <th>Description</th>
+      </tr>
+      <tr>
+        <td>NPU</td>
+        <td>not-for-profit use only</td> 
+        <td>Use of the data is limited to not-for-profit organizations.</td>
+      </tr>
+      <tr>
+        <td>PUB</td>
+        <td>publication required</td> 
+        <td>Requestor agrees to make results of studies using the data available to the larger scientific community.</td>
+      </tr>
+      <tr>
+        <td>COL-[XX]</td>
+        <td>collaboration required</td> 
+        <td>Requestor must agree to collaboration with the primary study investigator(s).</td>
+      </tr>
+      <tr>
+        <td>RTN</td>
+        <td>return data to database/resource</td> 
+        <td>Requestor must return derived/enriched data to the database/resource.</td>
+      </tr>
+      <tr>
+        <td>IRB</td>
+        <td>ethics approval required</td> 
+        <td>Requestor must provide documentation of local IRB/REC approval.</td>
+      </tr>
+      <tr>
+        <td>GS-[XX]</td>
+        <td>geographical restrictions</td> 
+        <td>Use of the data is limited to within [geographic region].</td>
+      </tr>
+      <tr>
+        <td>MOR-[XX]</td>
+        <td>publication moratorium/embargo</td> 
+        <td>Requestor agrees not to publish results of studies until [date].</td>
+      </tr>
+      <tr>
+        <td>TS-[XX]</td>
+        <td>time limits on use</td> 
+        <td>Use of data is approved for [x months].</td>
+      </tr>
+      <tr>
+        <td>US</td>
+        <td>user-specific restrictions</td> 
+        <td>Use of data is limited to use by approved users.</td>
+      </tr>
+      <tr>
+        <td>PS</td>
+        <td>project-specific restrictions</td> 
+        <td>Use of data is limited to use within an approved project.</td>
+      </tr>
+      <tr>
+        <td>IS</td>
+        <td>institution-specific restrictions</td> 
+        <td>Use of data is limited to use within an approved institution.</td>
+      </tr>
+    </table>
+  contact:
+    email: ga4gh-dwg-beacon@genomicsandhealth.org
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+externalDocs:
+  description: 'Consent Codes: Upholding Standard Data Use Conditions'
+  url: 'http://journals.plos.org/plosgenetics/article?id=10.1371/journal.pgen.1005772'  
 paths: {}
-
-definitions:
-  ConsentCodeDataUse:
-    type: object
-    required:
-      - primaryCategory
-      - secondaryCategories
-      - requirements
-      - version
-    properties:
-      primaryCategory:
-        $ref: "#/definitions/ConsentCodeDataUseConditionPrimary"
-      secondaryCategories:
-        type: array
-        items:
-          $ref: "#/definitions/ConsentCodeDataUseConditionSecondary"
-      requirements:
-        type: array
-        items:
-          $ref: "#/definitions/ConsentCodeDataUseConditionRequirement"
-      version:
-        type: string
-        description: Version of the data use specification.
-        example: v0.1
-  ConsentCodeDataUseConditionPrimary:
-    type: object
-    required:
-      - code
-      - description
-    properties:
-      code:
-        type: string
-        description: |
-          Primary data use categories:
-          * NRES: no restrictions - No restrictions on data use.
-          * GRU(CC): general research use and clinical care - For health/medical/biomedical purposes and other biological research, including the study of population origins or ancestry.
-          * HMB(CC): health/medical/biomedical research and clinical care - Use of the data is limited to health/medical/biomedical purposes, does not include the study of population origins or ancestry.
-          * DS-[XX](CC): disease-specific research and clinical care - Use of the data must be related to [disease].
-          * POA: population origins/ancestry research - Use of the data is limited to the study of population origins or ancestry.
-        enum: 
-          - NRES
-          - GRU
-          - HMB
-          - DS
-          - POA
-      description:
-        type: string
-        description: Description of the condition.
-  ConsentCodeDataUseConditionSecondary:
-    type: object
-    required:
-      - code
-      - description
-    properties:
-      code:
-        type: string
-        description: |
-          Secondary data use categories:
-          * RS-[XX]: other research-specific restrictions - Use of the data is limited to studies of [research type] (e.g., pediatric research).
-          * RUO: research use only - Use of data is limited to research purposes (e.g., does not include its use in clinical care).
-          * NMDS: no “general methods” research - Use of the data includes methods development research (e.g., development of software or algorithms) ONLY within the bounds of other data use limitations.
-          * GSO: genetic studies only - Use of the data is limited to genetic studies only (i.e., no research using only the phenotype data).
-        enum:
-          - RS
-          - RUO
-          - NMDS
-          - GSO
-      description:
-        type: string
-        description: Description of the condition.
-  ConsentCodeDataUseConditionRequirement:
-    type: object
-    required:
-      - code
-      - description
-    properties:
-      code:
-        type: string
-        description: |
-          Data use requirements:
-          * NPU: not-for-profit use only - Use of the data is limited to not-for-profit organizations.
-          * PUB: publication required - Requestor agrees to make results of studies using the data available to the larger scientific community.
-          * COL-[XX]: collaboration required - Requestor must agree to collaboration with the primary study investigator(s).
-          * RTN: return data to database/resource - Requestor must return derived/enriched data to the database/resource.
-          * IRB: ethics approval required - Requestor must provide documentation of local IRB/REC approval.
-          * GS-[XX]: geographical restrictions - Use of the data is limited to within [geographic region].
-          * MOR-[XX]: publication moratorium/embargo - Requestor agrees not to publish results of studies until [date].
-          * TS-[XX]: time limits on use - Use of data is approved for [x months].
-          * US: user-specific restrictions - Use of data is limited to use by approved users.
-          * PS: project-specific restrictions - Use of data is limited to use within an approved project.
-          * IS: institution-specific restrictions - Use of data is limited to use within an approved institution.
-        enum:
-          - NPU
-          - PUB
-          - COL
-          - RTN
-          - IRB
-          - GS
-          - MOR
-          - TS
-          - US
-          - PS
-          - IS
-      description:
-        type: string
-        description: Description of the condition.
+components:
+  schemas:
+    ConsentCodeDataUse:
+      type: object
+      required:
+        - primaryCategory
+        - version
+      properties:
+        primaryCategory:
+          $ref: '#/components/schemas/ConsentCodeDataUseCondition'
+        secondaryCategories:
+          type: array
+          default: []
+          items:
+            $ref: '#/components/schemas/ConsentCodeDataUseCondition'
+        requirements:
+          type: array
+          default: []
+          items:
+            $ref: '#/components/schemas/ConsentCodeDataUseCondition'
+        version:
+          type: string
+          description: Version of the data use specification.
+          example: 0.1
+      description: Data use of a resource based on consent codes.
+    ConsentCodeDataUseCondition:
+      type: object
+      required:
+        - code
+      properties:
+        code:
+          type: string
+          description: Consent code abbreviation.
+          example: NRES
+        description:
+          type: string
+          description: Description of the condition.
+      description: Data use condition.

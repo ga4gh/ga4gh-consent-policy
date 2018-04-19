@@ -5,3 +5,7 @@ Data model for the data use conditions based on consent codes as introduced in [
 ## How to contribute
 
 Guidelines for contributing to this repository are listed in the [CONTRIBUTING.md](CONTRIBUTING.md) document.
+
+## How to test
+
+Use [Swagger Validator Badge](https://github.com/swagger-api/validator-badge) to validate the YAML file.

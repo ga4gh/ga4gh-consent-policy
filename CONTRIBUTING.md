@@ -40,39 +40,7 @@ The project will strive for full consensus on everything until it runs into a pr
 
 ## Syntax Style and Conventions
 
-The current code conventions for the source files are as follows:
-
--   Use two-space indentation, and no tabs.
--   Hard-wrap code to 80 characters per line.
--   Use `UpperCamelCase` for object or record names.
--   Use `lowerCamelCase` for attribute or method names.
--   Use `CONSTANT_CASE` for global and constant values.
--   Comments:
-    -   Comments should be indented at the same level as the surrounding code.
-    -   Comments should precede the code that they make a comment on. Documentation comments will not work otherwise.
-    -   Documentation comments, which are intended to be processed by avrodoc and displayed in the user-facing API documentation, must use the `/** ... */` style, and must not have a leading `*` on each internal line:
-
-            /**
-            This documentation comment will be
-            processed correctly by avrodoc.
-            */
-
-            /**
-            * This documentation comment will have a
-            * bullet point at the start of every line
-            * when processed by avrodoc.
-            */
-
-    -   Block and multi-line non-documentation comments, intended for schema developers only, must use the `/* ... */` style.
-
-            /*
-            This multi-line comment will not appear in the
-            avrodoc documentation and is intended for
-            schema developers.
-            */
-
-    -   All multi-line comments should have the comment text at the same indent level as the comment delimeters.
-    -   One-line non-documentation comments, intended for schema developers only, must use the `// ...` style.
+The code should conform to the [OpenAPI specification](https://github.com/OAI/OpenAPI-Specification/tree/master/versions).
 
 ## Gitflow Workflow
 

@@ -30,45 +30,17 @@ Once a pull request or issue have been submitted, anyone can comment or vote on 
 -   It's okay to have input without voting.
 -   Silence gives assent.
 
-A pull request with at least two **+1** votes, no **-1** votes, that has been open for at least 3 days is ready to be merged. We sometimes waive the 3 days for cosmetic-only changes -- use good judgment. If an issue gets any **-1** votes, the comments on the issue need to reach consensus before the issue can be resolved one way or the other. There isn't any strict time limit on a contentious issue.
+A pull request is ready to be merged when either of the following is true:
+- A pull request has at least two **+1** votes, no **-1** votes, and has been open for at least 3 days.
+- A pull request has no **-1** votes, and has been open for at least 14 days.
+
+We sometimes waive the time constraint for cosmetic-only changes -- use good judgment. If an issue gets any **-1** votes, the comments on the issue need to reach consensus before the issue can be resolved one way or the other. There isn't any strict time limit on a contentious issue.
 
 The project will strive for full consensus on everything until it runs into a problem with this model.
 
 ## Syntax Style and Conventions
 
-The current code conventions for the source files are as follows:
-
--   Use two-space indentation, and no tabs.
--   Hard-wrap code to 80 characters per line.
--   Use `UpperCamelCase` for object or record names.
--   Use `lowerCamelCase` for attribute or method names.
--   Use `CONSTANT_CASE` for global and constant values.
--   Comments:
-    -   Comments should be indented at the same level as the surrounding code.
-    -   Comments should precede the code that they make a comment on. Documentation comments will not work otherwise.
-    -   Documentation comments, which are intended to be processed by avrodoc and displayed in the user-facing API documentation, must use the `/** ... */` style, and must not have a leading `*` on each internal line:
-
-            /**
-            This documentation comment will be
-            processed correctly by avrodoc.
-            */
-
-            /**
-            * This documentation comment will have a
-            * bullet point at the start of every line
-            * when processed by avrodoc.
-            */
-
-    -   Block and multi-line non-documentation comments, intended for schema developers only, must use the `/* ... */` style.
-
-            /*
-            This multi-line comment will not appear in the
-            avrodoc documentation and is intended for
-            schema developers.
-            */
-
-    -   All multi-line comments should have the comment text at the same indent level as the comment delimeters.
-    -   One-line non-documentation comments, intended for schema developers only, must use the `// ...` style.
+The code should conform to the [OpenAPI specification](https://github.com/OAI/OpenAPI-Specification/tree/master/versions).
 
 ## Gitflow Workflow
 
